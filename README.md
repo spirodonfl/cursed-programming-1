@@ -1,9 +1,5 @@
 # First Annual Cursed Programming Event
 
-# START DATE: NOW
-# END DATE: Friday, February 9th, 2024
-# 24 HR STREAM DATE: February 12th, 2024
-
 ## What is this?
 
 Pretty simple. Submit a PR with the most terrible, horrible, atrocities you can think of committing in code.
@@ -38,3 +34,9 @@ A secondary reason is to showcase peoples skills. Believe it or not, it takes a 
 Hopefully, showcasing your work and getting enough attention on the 24 hour streams will help a few of you get seen, find jobs or get some well deserved attention on your work.
 
 If we can, we may also pick a few content streamers and set aside some "sub bombs" for their content in the near future.
+
+## Dates
+
+- START DATE: NOW
+- END DATE: Friday, February 9th, 2024
+- 24 HR STREAM DATE: February 12th, 2024
