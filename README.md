@@ -1,5 +1,9 @@
 # First Annual Cursed Programming Event
 
+# START DATE: NOW
+# END DATE: Friday, February 9th, 2024
+# 24 HR STREAM DATE: February 12th, 2024
+
 ## What is this?
 
 Pretty simple. Submit a PR with the most terrible, horrible, atrocities you can think of committing in code.
@@ -17,3 +21,20 @@ Pretty simple. Submit a PR with the most terrible, horrible, atrocities you can 
 - transpile zig code to rust written in go
 - use db stored functions as backend exclusively
 - sql to css transpiler
+
+## Why would you want to do this?
+
+The primary reason? For charity. Once we have enough submissions, we will schedule a 24 hour review stream to review all the PRs in this repo. During that time, we will be donating to charity.
+
+The chosen charity this year is: https://www.bcchf.ca/
+
+A secondary reason is to showcase peoples skills. Believe it or not, it takes a lot to *purposefully* and *skillfully* write some cursed project in a way that:
+
+- makes sense
+- is fun to read
+- elegantly highlights why this is cursed
+- covers some unusual domain
+
+Hopefully, showcasing your work and getting enough attention on the 24 hour streams will help a few of you get seen, find jobs or get some well deserved attention on your work.
+
+If we can, we may also pick a few content streamers and set aside some "sub bombs" for their content in the near future.
