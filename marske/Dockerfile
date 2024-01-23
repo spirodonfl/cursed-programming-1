@@ -12,7 +12,11 @@ RUN apt-get update && \
     apt-get install -y \
     curl \
     build-essential \
-    python3
+    python3 \
+    python3-pip  # Install Python and pip
+
+# Alias python3 to python
+RUN ln -s /usr/bin/python3 /usr/bin/python
 
 # Install Node.js using NodeSource repository
 RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
