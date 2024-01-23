@@ -1,0 +1,6 @@
+node_modules/
+rust_quine.rs
+rust_quine
+typescript_quine.ts
+python_quine.py
+quine.js
