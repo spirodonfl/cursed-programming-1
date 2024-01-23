@@ -13,9 +13,12 @@ A quine is a self-replicating program that, when executed, produces a copy of it
    ```bash
    bash chmod +x run_steps.sh
    ```
-3. **Run the bash script:**
+3. **Run the dockerfile:**
+
    ```bash
-   bash ./run_steps.sh
+   bash docker build -t marske-cursed .
+   bash docker run marske-cursed
+
    ```
 
 ## Why is this cursed?
