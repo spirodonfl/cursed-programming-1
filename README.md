@@ -40,3 +40,7 @@ If we can, we may also pick a few content streamers and set aside some "sub bomb
 - START DATE: NOW
 - END DATE: Friday, February 9th, 2024
 - 24 HR STREAM DATE: February 12th, 2024
+
+### PR Submission Notes
+
+- Please ensure you are using Docker if there are dependencies that need to be included with your PR
