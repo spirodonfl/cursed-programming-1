@@ -2,7 +2,7 @@
 
 ## What is this?
 
-Pretty simple. Submit a PR with the most terrible, horrible, atrocities you can think of committing in code.
+Pretty simple. Submit a PR with the most terrible, horrible, atrocities you can think of committing in code. And then DO IT!
 
 ## Some Ideas
 
