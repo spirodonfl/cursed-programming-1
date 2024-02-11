@@ -1,0 +1,16 @@
+fibonacci.rec[n][a=0][b=1] {
+	@if $n==0 {
+		@return $a;
+	}
+
+	print: $a;
+	@return fibonacci.rec($n - 1, $b, $a + $b);
+}
+
+fibonacci[n] {
+	@return fibonacci.rec($n, (), ());
+}
+
+main {
+	fibonacci: 10;
+}

@@ -1,0 +1,13 @@
+max[a][b] {
+	@if $a>$b {
+		@return $a;
+	}
+
+	@else {
+		@return $b;
+	}
+}
+
+main {
+	print: max(1, 2);
+}
