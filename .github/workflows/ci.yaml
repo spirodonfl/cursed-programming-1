@@ -1,0 +1,104 @@
+name: Build Hyprland
+
+on: [push, pull_request, workflow_dispatch]
+jobs:
+  gcc:
+    name: "Build Hyprland (Arch)"
+    runs-on: ubuntu-latest
+    container:
+      image: archlinux
+    steps:
+      - name: Checkout repository actions
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: .github/actions
+
+      - name: Setup base
+        uses: ./.github/actions/setup_base
+        with:
+          INSTALL_XORG_PKGS: true
+
+      - name: Build Hyprland
+        run: |
+          make all
+
+      - name: Compress and package artifacts
+        run: |
+          mkdir x86_64-pc-linux-gnu
+          mkdir hyprland
+          mkdir hyprland/example
+          mkdir hyprland/assets
+          cp ./LICENSE hyprland/
+          cp build/Hyprland hyprland/
+          cp build/hyprctl/hyprctl hyprland/
+          cp subprojects/wlroots/build/libwlroots.so.13032 hyprland/
+          cp build/Hyprland hyprland/
+          cp -r example/ hyprland/
+          cp -r assets/ hyprland/
+          tar -cvf Hyprland.tar.xz hyprland
+
+      - name: Release
+        uses: actions/upload-artifact@v3
+        with:
+          name: Build archive
+          path: Hyprland.tar.xz
+
+  meson:
+    name: "Build Hyprland with Meson (Arch)"
+    runs-on: ubuntu-latest
+    container:
+      image: archlinux
+    steps:
+      - name: Checkout repository actions
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: .github/actions
+
+      - name: Setup base
+        uses: ./.github/actions/setup_base
+
+      - name: Configure
+        run: meson setup build -Ddefault_library=static
+
+      - name: Compile
+        run: ninja -C build
+
+  noxwayland:
+    name: "Build Hyprland in pure Wayland (Arch)"
+    runs-on: ubuntu-latest
+    container:
+      image: archlinux
+    steps:
+      - name: Checkout repository actions
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: .github/actions
+
+      - name: Setup base
+        uses: ./.github/actions/setup_base
+
+      - name: Configure
+        run: mkdir -p build && cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DNO_XWAYLAND:STRING=true -H./ -B./build -G Ninja
+
+      - name: Compile
+        run: make release
+
+  clang-format:
+    name: "Code Style (Arch)"
+    runs-on: ubuntu-latest
+    container:
+      image: archlinux
+    steps:
+      - name: Checkout repository actions
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: .github/actions
+
+      - name: Setup base
+        uses: ./.github/actions/setup_base
+
+      - name: Configure
+        run: meson setup build -Ddefault_library=static
+
+      - name: clang-format check
+        run: ninja -C build clang-format-check

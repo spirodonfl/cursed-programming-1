@@ -1,0 +1,67 @@
+name: Security Checks
+
+on: [push, pull_request]
+
+jobs:
+  flawfinder:
+    name: Flawfinder Checks
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Scan with Flawfinder
+        uses: david-a-wheeler/flawfinder@8e4a779ad59dbfaee5da586aa9210853b701959c
+        with:
+          arguments: '--sarif ./'
+          output: 'flawfinder_results.sarif'
+
+      - name: Upload analysis results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: ${{github.workspace}}/flawfinder_results.sarif
+
+  codeql:
+    name: CodeQL
+    runs-on: ubuntu-latest
+    container:
+      image: archlinux
+
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [ 'cpp' ]
+
+    steps:
+    - name: Checkout repository actions
+      uses: actions/checkout@v4
+      with:
+        sparse-checkout: .github/actions
+
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v2
+      with:
+        languages: ${{ matrix.language }}
+
+    - name: Setup base
+      uses: ./.github/actions/setup_base
+      with:
+        INSTALL_XORG_PKGS: true
+
+    - name: Build Hyprland
+      run: |
+        make all
+
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v2
+      with:
+        category: "/language:${{matrix.language}}"
